@@ -12,7 +12,8 @@ Users can add foods, vote for foods, and see the current winner food. If multipl
 - Show winner food on the home page
 - Show winner details at `/winner`
 - Show "No winner yet" when there are no votes
-- Store data in MySQL
+- Store data in MySQL when database variables are configured
+- Fall back to a small H2 file database when Railway MySQL is unavailable, so the app still works for demo/submission
 
 ## Local MySQL
 
@@ -46,6 +47,8 @@ DB_USER=YOUR_RAILWAY_USER
 DB_PASSWORD=YOUR_RAILWAY_PASSWORD
 PORT=10000
 ```
+
+If Railway MySQL is paused or unavailable, leave `DB_URL`, `DB_USER`, and `DB_PASSWORD` unset. The app will use the built-in H2 fallback and still support adding foods, voting, and showing the winner.
 
 Render build command:
 
