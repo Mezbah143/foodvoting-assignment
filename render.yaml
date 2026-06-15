@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: foodvoting
+    runtime: docker
+    plan: free
+    envVars:
+      - key: DB_URL
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: PORT
+        value: 10000

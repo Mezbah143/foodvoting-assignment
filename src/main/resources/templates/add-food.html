@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Food</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="site-header">
+    <div>
+        <p class="eyebrow">Food Voting App</p>
+        <h1>Add Food</h1>
+    </div>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/foods/new}">Add Food</a>
+        <a th:href="@{/winner}">Winner Food</a>
+    </nav>
+</header>
+
+<main class="page narrow">
+    <form class="form-card" th:action="@{/foods}" th:object="${food}" method="post">
+        <label for="name">Food name</label>
+        <input id="name" type="text" th:field="*{name}" placeholder="Example: Biryani">
+        <p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</p>
+
+        <label for="description">Description</label>
+        <textarea id="description" th:field="*{description}" rows="4" placeholder="Short description"></textarea>
+        <p class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description error</p>
+
+        <label for="imageUrl">Image URL optional</label>
+        <input id="imageUrl" type="url" th:field="*{imageUrl}" placeholder="https://example.com/food.jpg">
+        <p class="error" th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}">Image URL error</p>
+
+        <div class="form-actions">
+            <a class="button secondary" th:href="@{/}">Cancel</a>
+            <button type="submit">Save food</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>

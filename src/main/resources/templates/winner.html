@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winner Food</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="site-header">
+    <div>
+        <p class="eyebrow">Food Voting App</p>
+        <h1>Winner Food</h1>
+    </div>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/foods/new}">Add Food</a>
+        <a th:href="@{/winner}">Winner Food</a>
+    </nav>
+</header>
+
+<main class="page">
+    <section class="empty-state" th:if="${#lists.isEmpty(winners)}">
+        <h2>No winner yet</h2>
+        <p>No food has votes yet. Go back home, add foods, and vote.</p>
+        <a class="button" th:href="@{/}">Back to voting</a>
+    </section>
+
+    <section th:unless="${#lists.isEmpty(winners)}">
+        <div class="section-header">
+            <div>
+                <p class="eyebrow">Highest vote count: <span th:text="${highestVoteCount}">0</span></p>
+                <h2 th:if="${#lists.size(winners) == 1}">
+                    The winner is <span th:text="${winners[0].name}">Food</span>
+                </h2>
+                <h2 th:if="${#lists.size(winners) > 1}">It is a tie</h2>
+            </div>
+            <a class="button secondary" th:href="@{/}">Back to voting</a>
+        </div>
+
+        <div class="food-grid">
+            <article class="food-card winner-card" th:each="food : ${winners}">
+                <img th:if="${food.imageUrl != null and !food.imageUrl.isBlank()}" th:src="${food.imageUrl}" th:alt="${food.name}">
+                <div class="food-card-body">
+                    <h3 th:text="${food.name}">Food name</h3>
+                    <p th:if="${food.description != null and !food.description.isBlank()}" th:text="${food.description}">Description</p>
+                    <p class="votes"><span th:text="${food.voteCount}">0</span> votes</p>
+                </div>
+            </article>
+        </div>
+    </section>
+</main>
+</body>
+</html>

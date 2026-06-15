@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Voting App</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="site-header">
+    <div>
+        <p class="eyebrow">WebServer Assignment</p>
+        <h1>Food Voting App</h1>
+    </div>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/foods/new}">Add Food</a>
+        <a th:href="@{/winner}">Winner Food</a>
+    </nav>
+</header>
+
+<main class="page">
+    <section class="winner-banner">
+        <div>
+            <p class="eyebrow">Current winner food</p>
+            <h2 th:if="${#lists.isEmpty(winners)}">No winner yet</h2>
+            <h2 th:unless="${#lists.isEmpty(winners)}">
+                <span th:if="${#lists.size(winners) == 1}" th:text="${winners[0].name}">Food name</span>
+                <span th:if="${#lists.size(winners) > 1}">
+                    Tie between <span th:text="${#lists.size(winners)}">2</span> foods
+                </span>
+            </h2>
+            <p th:if="${#lists.isEmpty(winners)}">Add foods and start voting to choose a winner.</p>
+            <p th:unless="${#lists.isEmpty(winners)}">
+                Highest vote count: <strong th:text="${highestVoteCount}">0</strong>
+            </p>
+        </div>
+        <a class="button secondary" th:href="@{/winner}">View winner</a>
+    </section>
+
+    <p class="flash" th:if="${message}" th:text="${message}">Message</p>
+
+    <section class="section-header">
+        <div>
+            <h2>Foods</h2>
+            <p>Vote for your favorite food. The food with the most votes becomes the winner.</p>
+        </div>
+        <a class="button" th:href="@{/foods/new}">Add food</a>
+    </section>
+
+    <section class="empty-state" th:if="${#lists.isEmpty(foods)}">
+        <h3>No foods added yet</h3>
+        <p>Add the first food so classmates can vote.</p>
+    </section>
+
+    <section class="food-grid" th:unless="${#lists.isEmpty(foods)}">
+        <article class="food-card" th:each="food : ${foods}">
+            <img th:if="${food.imageUrl != null and !food.imageUrl.isBlank()}" th:src="${food.imageUrl}" th:alt="${food.name}">
+            <div class="food-card-body">
+                <h3 th:text="${food.name}">Food name</h3>
+                <p th:if="${food.description != null and !food.description.isBlank()}" th:text="${food.description}">Description</p>
+                <p class="votes"><span th:text="${food.voteCount}">0</span> votes</p>
+                <form th:action="@{/foods/{id}/vote(id=${food.id})}" method="post">
+                    <button type="submit">Vote</button>
+                </form>
+            </div>
+        </article>
+    </section>
+</main>
+</body>
+</html>

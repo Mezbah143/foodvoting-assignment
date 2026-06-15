@@ -1,0 +1,214 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: #1f2937;
+    background: #f7f7f4;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px 7vw;
+    color: #fff;
+    background: #184e3a;
+}
+
+.site-header h1 {
+    margin: 4px 0 0;
+    font-size: 32px;
+}
+
+.site-header nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.site-header nav a {
+    padding: 10px 14px;
+    border-radius: 6px;
+    color: #fff;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.page {
+    width: min(1120px, 92vw);
+    margin: 32px auto;
+}
+
+.narrow {
+    width: min(680px, 92vw);
+}
+
+.eyebrow {
+    margin: 0;
+    color: #d6f5df;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.winner-banner,
+.section-header,
+.empty-state,
+.form-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.winner-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.winner-banner .eyebrow,
+.section-header .eyebrow {
+    color: #28704d;
+}
+
+.winner-banner h2,
+.section-header h2 {
+    margin: 8px 0;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+}
+
+.section-header p {
+    margin: 6px 0 0;
+    color: #5b6472;
+}
+
+.button,
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 6px;
+    color: #fff;
+    background: #28704d;
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button.secondary {
+    color: #184e3a;
+    background: #e2f4e8;
+}
+
+.flash {
+    padding: 12px 16px;
+    border-radius: 6px;
+    color: #184e3a;
+    background: #dff4e6;
+}
+
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+}
+
+.food-card {
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.food-card img {
+    display: block;
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    background: #e5e7eb;
+}
+
+.food-card-body {
+    padding: 18px;
+}
+
+.food-card h3 {
+    margin: 0 0 8px;
+}
+
+.food-card p {
+    color: #5b6472;
+}
+
+.votes {
+    font-weight: 700;
+}
+
+.winner-card {
+    border-color: #28704d;
+}
+
+.empty-state {
+    padding: 32px;
+    text-align: center;
+}
+
+.form-card {
+    display: grid;
+    gap: 10px;
+    padding: 24px;
+}
+
+label {
+    font-weight: 700;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font: inherit;
+}
+
+.error {
+    margin: 0 0 8px;
+    color: #b42318;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+@media (max-width: 720px) {
+    .site-header,
+    .winner-banner,
+    .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
